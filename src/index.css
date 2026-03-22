@@ -1,0 +1,477 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+}
+
+/* ── Landing page scroll reveal ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Respect prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f0f2f5;
+}
+
+/* ── Sidebar transition ── */
+.ant-layout-sider {
+  transition: all 0.2s ease !important;
+}
+
+/* ══════════════════════════════════════════════
+   BUTTON — Smooth hover + interaction (Canva-style)
+   ══════════════════════════════════════════════ */
+.ant-btn {
+  transition: all 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  font-weight: 500 !important;
+}
+
+.ant-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10) !important;
+}
+
+.ant-btn:not(:disabled):active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none !important;
+}
+
+.ant-btn-primary:not(:disabled):hover {
+  box-shadow: 0 4px 16px rgba(15, 35, 68, 0.28) !important;
+}
+
+.ant-btn-dangerous:not(:disabled):hover {
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.28) !important;
+}
+
+.ant-btn[disabled],
+.ant-btn:disabled {
+  opacity: 0.55;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Tombol link/text — hover underline subtle */
+.ant-btn-link:not(:disabled):hover,
+.ant-btn-text:not(:disabled):hover {
+  transform: none;
+  box-shadow: none !important;
+}
+
+/* ══════════════════════════════════════════════
+   INPUT & SELECT — Smooth focus transition
+   ══════════════════════════════════════════════ */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector,
+.ant-picker {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+/* ══════════════════════════════════════════════
+   TABLE — Row hover smooth
+   ══════════════════════════════════════════════ */
+.ant-table-tbody > tr {
+  transition: background 0.15s ease !important;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+  background: #f5f7ff !important;
+}
+
+/* ══════════════════════════════════════════════
+   CARD — Subtle entry & hover
+   ══════════════════════════════════════════════ */
+.ant-card {
+  transition: box-shadow 0.2s ease !important;
+}
+
+/* ══════════════════════════════════════════════
+   MODAL — Smooth backdrop
+   ══════════════════════════════════════════════ */
+.ant-modal-content {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════
+   TYPOGRAPHY — Consistent hierarchy
+   ══════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.01em;
+}
+
+/* Page title (h2 used in most pages) */
+h2 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #1a1a2e !important;
+}
+
+/* ══════════════════════════════════════════════
+   SCROLLBAR — Minimal & clean (Notion-style)
+   ══════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* ══════════════════════════════════════════════
+   FEEDBACK MESSAGE — Smooth appear
+   ══════════════════════════════════════════════ */
+.ant-message-notice-content {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ══════════════════════════════════════════════
+   TAG — Consistent pill style
+   ══════════════════════════════════════════════ */
+.ant-tag {
+  border-radius: 4px !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+}
+
+/* ══════════════════════════════════════════════
+   DRAWER & POPCONFIRM — Border radius
+   ══════════════════════════════════════════════ */
+.ant-popover-inner {
+  border-radius: 10px !important;
+}
+
+/* ══════════════════════════════════════════════
+   BADGE — Smooth pulse for notification
+   ══════════════════════════════════════════════ */
+.ant-badge-count {
+  font-weight: 700 !important;
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE TABLE — Horizontal scroll
+   ══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .ant-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ant-table {
+    min-width: 480px;
+  }
+
+  /* Tighter padding on mobile */
+  .ant-table-cell {
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+  }
+
+  /* Hide less-important columns on mobile via utility class */
+  .aktura-col-desktop {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   FOCUS RING — Brand color
+   ══════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #1B365D;
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   SKELETON — Enhanced shimmer
+   ══════════════════════════════════════════════ */
+@keyframes aktura-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.ant-skeleton-element .ant-skeleton-input,
+.ant-skeleton-element .ant-skeleton-button,
+.ant-skeleton .ant-skeleton-paragraph > li,
+.ant-skeleton .ant-skeleton-title {
+  background: linear-gradient(
+    90deg,
+    #ede9e3 25%,
+    #f5f2ed 50%,
+    #ede9e3 75%
+  ) !important;
+  background-size: 800px 100% !important;
+  animation: aktura-shimmer 1.4s ease-in-out infinite !important;
+}
+
+/* ══════════════════════════════════════════════
+   EMPTY STATE — Consistent placeholder
+   ══════════════════════════════════════════════ */
+.ant-empty-description {
+  color: #8c8c8c !important;
+  font-size: 13px !important;
+}
+
+.aktura-empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.aktura-empty-icon {
+  font-size: 40px;
+  color: #C6A75E;
+  opacity: 0.45;
+  margin-bottom: 12px;
+}
+
+/* ══════════════════════════════════════════════
+   DRAWER — Full-width on mobile (P1.2)
+   ══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .ant-drawer-content-wrapper {
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  /* Card padding tighter on mobile */
+  .ant-card-body {
+    padding: 14px 16px !important;
+  }
+  /* Modal margin */
+  .ant-modal-content {
+    margin: 0 12px;
+  }
+  /* Form item spacing tighter */
+  .ant-form-item {
+    margin-bottom: 14px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   REGISTER AKTA — Hide scrollbar on filter tabs
+   ══════════════════════════════════════════════ */
+.ra-filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* ══════════════════════════════════════════════
+   TABLE — Better empty state base
+   ══════════════════════════════════════════════ */
+.ant-table-placeholder .ant-empty {
+  padding: 40px 0 !important;
+}
+.ant-table-placeholder .ant-empty-image {
+  height: 48px !important;
+}
+
+/* ══════════════════════════════════════════════
+   NOTIFICATION — Bottom-right positioning
+   ══════════════════════════════════════════════ */
+.ant-message {
+  top: auto !important;
+  bottom: 24px !important;
+}
+
+/* ══════════════════════════════════════════════
+   KONSEP DOKUMEN — Streaming animation
+   ══════════════════════════════════════════════ */
+@keyframes kd-streaming-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ══════════════════════════════════════════════
+   BUKU REGISTER — Mobile notice (P2.4)
+   ══════════════════════════════════════════════ */
+.buku-register-mobile-notice {
+  display: none;
+}
+@media (max-width: 640px) {
+  .buku-register-mobile-notice {
+    display: flex;
+  }
+  .buku-register-content {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   DASHBOARD — Tablet layout (P1.4)
+   ══════════════════════════════════════════════ */
+@media (max-width: 1199px) and (min-width: 640px) {
+  .aktura-dash-main-panels {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .aktura-dash-panel-right {
+    grid-column: 1 / -1 !important;
+  }
+}
+@media (max-width: 639px) {
+  .aktura-dash-main-panels {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   NOTARY PUBLIC — Hide vertical label on mobile (P1.3)
+   ══════════════════════════════════════════════ */
+@media (max-width: 639px) {
+  .aktura-about-sidebar-label {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   AKTA DETAIL — Stack labels on mobile (P2.1)
+   ══════════════════════════════════════════════ */
+@media (max-width: 639px) {
+  .aktura-detail-row {
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .aktura-detail-label {
+    width: auto !important;
+    min-width: 0 !important;
+    font-size: 11px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   PAGE BUILDER — Preview pane below on mobile (P4.4)
+   ══════════════════════════════════════════════ */
+@media (max-width: 639px) {
+  .aktura-pagebuilder-layout {
+    flex-direction: column !important;
+  }
+  .aktura-pagebuilder-preview {
+    width: 100% !important;
+    height: 140px !important;
+    border-left: none !important;
+    border-top: 1px solid #E2DDD6 !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   GLOBAL EMPTY STATE — Consistent custom style
+   ══════════════════════════════════════════════ */
+.aktura-table-empty {
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.aktura-table-empty-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #F7F6F3;
+  border: 1px solid #E2DDD6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.aktura-table-empty-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2F2F2F;
+  line-height: 1.4;
+}
+.aktura-table-empty-desc {
+  font-size: 12.5px;
+  color: #6B7280;
+  max-width: 240px;
+  line-height: 1.6;
+}
+
+/* ── KonsepDokumen Mobile Layout ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .aktura-konsep-layout { flex-direction: column !important; height: auto !important; }
+  .aktura-konsep-chat-panel { width: 100% !important; min-width: unset !important; max-height: 45vh; overflow-y: auto; border-right: none !important; border-bottom: 1px solid #E2DDD6; }
+  .aktura-konsep-doc-panel { width: 100% !important; flex: unset !important; min-height: 50vh; }
+}
+
+/* ── Stagger Entrance Animation ──────────────────────────────────────────── */
+@keyframes aktura-stagger-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+.aktura-stagger-item {
+  opacity: 0;
+}
+.aktura-stagger-item.aktura-stagger-in {
+  animation: aktura-stagger-in 0.45s cubic-bezier(0.0, 0.0, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .aktura-stagger-item { opacity: 1 !important; animation: none !important; }
+}
+
+/* ── Table Skeleton / Shimmer ────────────────────────────────────────────── */
+@keyframes aktura-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.aktura-skeleton-row {
+  height: 44px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0ede8 25%, #e8e4dd 50%, #f0ede8 75%);
+  background-size: 200% 100%;
+  animation: aktura-shimmer 1.4s ease-in-out infinite;
+  margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+}
+.aktura-skeleton-cell {
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #e8e4dd 25%, #dedad3 50%, #e8e4dd 75%);
+  background-size: 200% 100%;
+  animation: aktura-shimmer 1.4s ease-in-out infinite;
+}

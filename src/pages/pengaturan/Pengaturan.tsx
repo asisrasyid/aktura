@@ -1067,7 +1067,7 @@ function SortableBuilderSection({ section, onToggle, onRemove }: {
       {...listeners}
       style={{
         transform: CSS.Transform.toString(transform),
-        transition,
+          transition: `${transition || ''}, box-shadow 0.15s, border-color 0.15s, background 0.15s`,
         opacity: isDragging ? 0.5 : 1,
         display: 'flex', alignItems: 'center', gap: 10,
         padding: '10px 14px',
@@ -1083,7 +1083,7 @@ function SortableBuilderSection({ section, onToggle, onRemove }: {
         touchAction: 'none',
         zIndex: isDragging ? 50 : undefined,
         position: isDragging ? 'relative' : undefined,
-        transition: transition ?? 'box-shadow 0.15s, border-color 0.15s, background 0.15s',
+        
       }}
     >
       {/* Drag handle hint */}
